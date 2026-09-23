@@ -47,12 +47,15 @@
 
 <div id="chat-container">
     <!-- 📌 ΤΟ ΚΟΥΤΙ ΤΩΝ ΜΗΝΥΜΑΤΩΝ ΠΑΙΡΝΕΙ ΤΗ ΣΩΣΤΗ ΣΕΙΡΑ -->
-    <div id="chat-messages">
-        <!-- 📊 Ο LIVE ΜΕΤΡΗΤΗΣ ΜΕΣΑ ΣΤΗ ΡΟΗ -->
-        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 6px; margin-bottom: 12px; position: sticky; top: 0; background: transparent; z-index: 10;">
-            <div id="connection-status" style="color: #aaa; font-style: italic; font-size: 13px;">Σύνδεση...</div>
+        <div id="chat-messages">
+        <!-- 📊 ΜΟΝΟ Ο ΜΕΤΡΗΤΗΣ ΜΕΝΕΙ ΣΤΑΘΕΡΟΣ ΣΤΗΝ ΚΟΡΥΦΗ -->
+        <div style="display: flex; justify-content: flex-end; align-items: center; padding: 5px 10px; margin-bottom: 12px; position: sticky; top: 0; background: #14181f; z-index: 10;">
             <div id="user-counter" style="color: #00ffcc; font-weight: bold; font-size: 13px; text-shadow: 0 0 5px #00ffcc;">Online: 1</div>
         </div>
+            
+        <!-- 🟢 ΤΟ ΜΗΝΥΜΑ ΣΥΝΔΕΣΗΣ: Τώρα θα ανεβαίνει κανονικά προς τα πάνω μαζί με τα μηνύματα! -->
+        <div id="connection-status" style="color: #aaa; text-align: center; font-style: italic; font-size: 13px; margin-bottom: 15px;">Σύνδεση...</div>
+
 </div>
     
     <div id="input-area">
