@@ -73,6 +73,7 @@
     const socket = io('https://panagiotis-live-chat.onrender.com/');
     const soundSend = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_2.mp3'); 
     const soundReceive = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_2.mp3'); 
+    const soundJoin = new Audio('https://www.myinstants.com/media/sounds/magic-fairy.mp3'); 
 
     const urlParams = new URLSearchParams(window.location.search);
     const isAdmin = urlParams.get('admin') === 'true';
@@ -108,12 +109,21 @@
         messageInput.disabled = false; sendButton.disabled = false;
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) { voiceButton.disabled = false; setupVoiceRecording(); }
     });
-    // 📊 Live Ακρόαση του Server για τον αριθμό των Online χρηστών
+        // 📊 Live Ακρόαση με αυτόματο ήχο εισόδου θεατή!
+    let lastUserCount = 0; // Κρατάει τον προηγούμενο αριθμό
+
     socket.on('user-count', (count) => {
         const counterEl = document.getElementById('user-counter');
         if (counterEl) {
             counterEl.innerText = `Online: ${count}`;
         }
+        
+        // 🔥 ΚΛΕΙΔΙ: Αν ο αριθμός των χρηστών αυξήθηκε, παίξε τον ήχο εισόδου!
+        if (count > lastUserCount && lastUserCount !== 0) {
+            soundJoin.play().catch(e => console.log('Ήχος εισόδου'));
+        }
+        
+        lastUserCount = count; // Ενημέρωση του αριθμού για την επόμενη φορά
     });
 
     function setupVoiceRecording() {
